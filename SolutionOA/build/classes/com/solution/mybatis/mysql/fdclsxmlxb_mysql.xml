@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>    
+<!DOCTYPE mapper    
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.solution.dao.FdclsxmlxbDao">
+
+	<resultMap id="fdclsxmlxb" type="com.solution.entity.Fdclsxmlxb">
+		<result property="id" column="ID" />
+		<result property="formNumber" column="FormNumber" />
+		<result property="loginName" column="LoginName" />
+		<result property="projectName" column="ProjectName" />
+		<result property="servicePrice" column="ServicePrice" />
+		<result property="staffNumber" column="StaffNumber" />
+		<result property="serviceMonths" column="ServiceMonths" />
+		<result property="serviceRental" column="ServiceRental" />
+		<result property="executiveTime" column="ExecutiveTime" />
+		<result property="singlePrice" column="SinglePrice" />
+		<result property="royaltyRate" column="RoyaltyRate" />
+		<result property="createTime" column="CreateTime" />
+		<result property="endTime" column="EndTime" />
+	</resultMap>
+	
+	<select id="findAllFdclsxmlxb" resultType="com.solution.entity.Fdclsxmlxb">
+		SELECT
+			f.ID,
+			f.LoginName,
+			f.FormNumber,
+			f.ProjectName,
+			f.ServicePrice,
+			f.StaffNumber,
+			f.ServiceMonths,
+			f.ServiceRental,
+			f.SinglePrice,
+			f.RoyaltyRate,
+			f.ExecutiveTime,
+			f.CreateTime,
+			f.EndTime
+			FROM OA_Fdclsxmlxb f
+	</select>
+	<select id="findById" resultMap="fdclsxmlxb">
+		SELECT
+			f.ID,
+			f.LoginName,
+			f.FormNumber,
+			f.ProjectName,
+			f.ServicePrice,
+			f.StaffNumber,
+			f.ServiceMonths,
+			f.ServiceRental,
+			f.SinglePrice,
+			f.RoyaltyRate,
+			f.ExecutiveTime,
+			f.CreateTime,
+			f.EndTime
+			FROM OA_Fdclsxmlxb f
+		WHERE f.ID = #{id} 	
+	</select>
+
+	<delete id="delete" parameterType="int">
+		DELETE FROM OA_Fdclsxmlxb WHERE
+		ID = #{id} 
+	</delete>
+	
+	<update id="update" parameterType="com.solution.entity.Fdclsxmlxb">
+		UPDATE OA_Fdclsxmlxb set
+			FormNumber = #{formNumber},
+			LoginName = #{loginName},
+			ProjectName = #{projectName},
+			ServicePrice = #{servicePrice},
+			StaffNumber = #{staffNumber},
+			ServiceMonths = #{serviceMonths},
+			ServiceRental = #{serviceRental},
+			SinglePrice = #{singlePrice},
+			ExecutiveTime = #{executiveTime},
+			RoyaltyRate = #{royaltyRate},
+		where 
+		ID = #{id}
+	</update>
+	
+	<insert id="insert" parameterType="com.solution.entity.Fdclsxmlxb">
+		insert into OA_Fdclsxmlxb(
+			FormNumber,
+			LoginName,
+			ProjectName,
+			ServicePrice,
+			staffNumber,
+			ServiceMonths,
+			ServiceRental,
+			ExecutiveTime,
+			SinglePrice,
+			RoyaltyRate,
+			CreateTime,
+			EndTime
+		)
+		VALUES(
+			#{formNumber},
+			#{loginName},
+			#{projectName},
+			#{servicePrice},
+			#{staffNumber},
+			#{serviceMonths},
+			#{serviceRental},
+			#{executiveTime},
+			#{singlePrice},
+			#{royaltyRate},
+			#{createTime},
+			#{endTime}
+		)
+	</insert>
+
+</mapper>

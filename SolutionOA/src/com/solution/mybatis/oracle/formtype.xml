@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>    
+<!DOCTYPE mapper    
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.solution.dao.FormTypeDao">
+	<resultMap id="formtype" type="com.solution.entity.FormType">
+		<result property="id" column="ID" />
+		<result property="departmentID" column="DepartmentID" />
+		<result property="formName" column="FormName" />
+		<result property="remark" column="Remark" />
+		<result property="createTime" column="CreateTime" />
+		<result property="endTime" column="EndTime" />
+	</resultMap>
+	<select id="findAllFormType" resultType="com.solution.entity.FormType">
+		SELECT
+			f.ID,
+			f.DepartmentID,
+			f.FormName,
+			f.CreateTime,
+			f.EndTime,
+			f.Remark,
+			d.DepartmentName
+		FROM OA_FormType f
+		LEFT JOIN 
+			OA_Department d ON f.DepartmentID = d.ID
+		ORDER BY CreateTime desc
+	</select>
+
+	<select id="findById" resultMap="formtype">
+		select * from OA_FormType
+		where ID = #{id}
+	</select>
+
+	<delete id="delete" parameterType="int">
+		delete from OA_FormType where
+		ID = #{id}
+	</delete>
+	
+	
+	<update id="update" parameterType="com.solution.entity.FormType">
+		update OA_FormType set
+		FormName = #{formName},
+		DepartmentID = #{departmentID},
+		Remark = #{remark}
+		where 
+		ID = #{id}
+	
+	</update>
+	
+	<insert id="insert" parameterType="com.solution.entity.FormType">
+		insert into OA_FormType(
+		FormName,
+		Remark,
+		DepartmentID,
+		CreateTime,
+		EndTime
+		)
+		VALUES(
+		#{formName},
+		#{remark},
+		#{departmentID},
+		#{createTime},
+		#{endTime}
+		)
+	</insert>
+
+</mapper>

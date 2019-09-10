@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- user类各层配置 -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+   
+    <bean id="accountDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.solution.dao.AccountDao"></property>
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+	</bean>
+	<bean id="accountService" class="com.solution.service.impl.AccountServiceImpl">
+		<property name="accountDao" ref="accountDao"></property>
+	</bean>
+	<bean id="accountAction" class="com.solution.action.AccountAction">
+		<property name="accountService" ref="accountService"></property>
+		<property name="accountRoleService" ref="accountRoleService"></property>
+		<property name="departmentService" ref="departmentService"></property>
+		<property name="positionService" ref="positionService"></property>
+	</bean>
+	
+</beans>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+    <package name="account" namespace="/account" extends="base">
+    	<action name="login" class="accountAction" method="login">
+			<result name="success" ></result>
+		</action>
+		
+		<action name="logout" class="logoutAction" method="logout">
+			<result name="success" type="redirect">../login.jsp</result>
+		</action>
+		
+		<action name="base" class="baseAction" method="lookRight">
+			<result name="base">/login.jsp</result>
+		</action>
+    </package>
+</struts>

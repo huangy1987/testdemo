@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>    
+<!DOCTYPE mapper    
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.solution.dao.ApprovalProcessDao">
+	<resultMap id="approvalProcess" type="com.solution.entity.ApprovalProcess">
+		<result property="id" column="ID" />
+		<result property="formTypeID" column="FormTypeID" />
+		<result property="flowNumber" column="FlowNumber" />
+		<result property="approverPosition" column="ApproverPosition" />
+		<result property="approverAccount" column="ApproverAccount" />
+		<result property="approverRealName" column="ApproverRealName" />
+		<result property="constraints" column="Constraints" />
+		<result property="createTime" column="CreateTime" />
+		<result property="endTime" column="EndTime" />
+	</resultMap>
+	<select id="findAllApprovalProcess" resultType="com.solution.entity.ApprovalProcess">
+			SELECT
+			ap.ID,
+			ap.FormTypeID,
+			ap.FlowNumber,
+			ap.ApproverPosition,
+			ap.ApproverAccount,
+			ap.ApproverRealName,
+			ap.[Constraints],
+			ap.CreateTime,
+			ap.EndTime,
+			f.FormName,
+			d.DepartmentName
+		FROM OA_ApprovalProcess ap
+		LEFT JOIN 
+		      OA_FormType f ON f.ID = ap.FormTypeID
+		LEFT JOIN 
+		      OA_Department d ON d.ID = f.DepartmentID  
+		order by d.ID,ap.FormTypeID,ap.FlowNumber,ap.CreateTime
+	</select>
+
+	<select id="findById" resultMap="approvalProcess">
+		select * from OA_ApprovalProcess
+		where ID = #{id}
+	</select>
+
+	<delete id="delete" parameterType="int">
+		delete from OA_ApprovalProcess where
+		ID = #{id}
+	</delete>
+	
+	
+	<update id="update" parameterType="com.solution.entity.ApprovalProcess">
+		update OA_ApprovalProcess set
+		FormTypeID = #{formTypeID},
+		FlowNumber = #{flowNumber},
+		ApproverPosition = #{approverPosition},
+		ApproverAccount = #{approverAccount},
+		ApproverRealName = #{approverRealName},
+		Constraints = #{constraints}
+		where 
+		ID = #{id}
+	
+	</update>
+	
+	<insert id="insert" parameterType="com.solution.entity.ApprovalProcess">
+		insert into OA_ApprovalProcess(
+			FormTypeID,
+			FlowNumber,
+			ApproverPosition,
+			ApproverAccount,
+			ApproverRealName,
+			Constraints,
+			CreateTime,
+			EndTime
+		)
+		VALUES(
+			#{formTypeID},
+			#{flowNumber},
+			#{approverPosition},
+			#{approverAccount},
+			#{approverRealName},
+			#{constraints},
+			#{createTime},
+			#{endTime}
+		)
+	</insert>
+
+</mapper>

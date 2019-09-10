@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- user类各层配置 -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+   
+    <bean id="approvalProcessRecordDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.solution.dao.ApprovalProcessRecordDao"></property>
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+	</bean>
+	<bean id="approvalProcessRecordService" class="com.solution.service.impl.ApprovalProcessRecordServiceImpl">
+		<property name="approvalProcessRecordDao" ref="approvalProcessRecordDao"></property>
+	</bean>
+</beans>

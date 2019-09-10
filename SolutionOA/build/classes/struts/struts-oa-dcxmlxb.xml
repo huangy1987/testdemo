@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+    <package name="dcxmlxb" namespace="/dcxmlxb" extends="base">
+    	 <action name="go*" class="dcxmlxbAction" method="{1}">
+    	 	<result>/page/form/{1}.jsp </result>
+    	 </action>
+    	  <action name="add*" class="dcxmlxbAction" method="add{1}">
+    	 	<result name="success" type="redirect">../dcxmlxb/go{1}?id=1</result>
+    	 </action>
+    	  <action name="approvalDcxmlxb" class="dcxmlxbAction" method="approvalDcxmlxb">
+    	 	<result name="success">/page/form/dcxmlxbApproval.jsp</result>
+    	 	<result name="app" type="redirect">../dcxmlxb/approvalDcxmlxb?id=1</result>
+    	 </action>
+    	  <action name="findApproval" class="dcxmlxbAction" method="findApprovalProcessRecord">
+    	 </action>
+    </package>
+</struts>

@@ -1,0 +1,33 @@
+.tab {
+	float: left;
+	margin-left: 5px;
+	margin-top: 5px;
+	cellspacing = 1;£»
+	border = 0;
+	star :expression(this.cellSpacing=10);
+	word-break: keep-all;/*±ØÐë*/
+}
+
+.table_border{
+			border: solid 1px black;
+			border-collapse: collapse;
+			overflow:auto;
+			overFlow-x: scroll ;
+			border-style: solid ;        
+}
+.table_border tr th{
+	padding-left:4px;
+	height:15px;
+	border: solid 2px black;
+}
+.table_border tr td{
+	width:25px;
+	height:25px;
+	padding:4px;
+	border: solid 1px black;
+}
+		
+.isRed{
+	color: red;
+}		
+		

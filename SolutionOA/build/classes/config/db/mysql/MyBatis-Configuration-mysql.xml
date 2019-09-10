@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <typeAliases>
+    	<typeAlias alias="account" type="com.solution.entity.Account"/>
+    	<typeAlias alias="role" type="com.solution.entity.AccountRole"/>
+    	<typeAlias alias="module" type="com.solution.entity.Module"/>
+    	<typeAlias alias="formtype" type="com.solution.entity.FormType"/>
+    	<typeAlias alias="department" type="com.solution.entity.Department"/>
+    	<typeAlias alias="position" type="com.solution.entity.Position"/>
+    	<typeAlias alias="approvalProcess" type="com.solution.entity.ApprovalProcess"/>
+    	<typeAlias alias="approvalProcessRecord" type="com.solution.entity.ApprovalProcessRecord"/>
+    	<typeAlias alias="dcxmlxb" type="com.solution.entity.Dcxmlxb"/>
+    	<typeAlias alias="fdclsxmlxb" type="com.solution.entity.Fdclsxmlxb"/>
+    </typeAliases>
+	<mappers>
+		<!-- <mapper resource="../../../com/solution/mybatis/account_mysql.xml" />
+		<mapper resource="../../../com/solution/mybatis/accountrole_mysql.xml" />
+		<mapper resource="../../../com/solution/mybatis/module_mysql.xml" />
+		<mapper resource="../../../com/solution/mybatis/formtype_mysql.xml" />
+		<mapper resource="../../../com/solution/mybatis/department_mysql.xml" />
+		<mapper resource="../../../com/solution/mybatis/position_mysql.xml" />
+		<mapper resource="../../../com/solution/mybatis/fdclsxmlxb_mysql.xml" />
+		<mapper resource="../../../com/solution/mybatis/approvalProcess_mysql.xml" />
+		<mapper resource="../../../com/solution/mybatis/approvalProcessRecord_mysql.xml" />
+		<mapper resource="../../../com/solution/mybatis/dcxmlxb_mysql.xml" /> -->
+		
+		<mapper resource="com/solution/mybatis/account_mysql.xml" />
+		<mapper resource="com/solution/mybatis/accountrole_mysql.xml" />
+		<mapper resource="com/solution/mybatis/module_mysql.xml" />
+		<mapper resource="com/solution/mybatis/formtype_mysql.xml" />
+		<mapper resource="com/solution/mybatis/department_mysql.xml" />
+		<mapper resource="com/solution/mybatis/position_mysql.xml" />
+		<mapper resource="com/solution/mybatis/fdclsxmlxb_mysql.xml" />
+		<mapper resource="com/solution/mybatis/approvalProcess_mysql.xml" />
+		<mapper resource="com/solution/mybatis/approvalProcessRecord_mysql.xml" />
+		<mapper resource="com/solution/mybatis/dcxmlxb_mysql.xml" />
+	</mappers>
+</configuration>
+

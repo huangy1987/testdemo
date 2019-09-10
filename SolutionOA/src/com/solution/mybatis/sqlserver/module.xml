@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>    
+<!DOCTYPE mapper    
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.solution.dao.ModuleDao">
+	<resultMap id="module" type="com.solution.entity.Module">
+		<result property="id" column="ID" />
+		<result property="moduleIndex" column="ModuleIndex" />
+		<result property="moduleIcon" column="ModuleIcon" />
+		<result property="moduleName" column="ModuleName" />
+		<result property="modulePath" column="ModulePath" />
+		<result property="moduleParentID" column="ModuleParentID" />
+		<result property="remark" column="Remark" />
+		<result property="createTime" column="CreateTime" />
+		<result property="endTime" column="EndTime" />
+		<result property="moduleType" column="ModuleType" />
+	</resultMap>
+	<select id="findAllModule" resultMap="module" >
+		SELECT
+			m.ID,
+			m.ModuleIndex,
+			m.ModuleIcon,
+			m.ModuleName,
+			m.ModulePath,
+			m.ModuleParentID,
+			m.ModuleType,
+			m.CreateTime,
+			m.EndTime,
+			m.Remark,
+			(select mm.ModuleName FROM Sys_Module mm where m.ModuleParentID = mm.ID)as ModuleParentName
+		FROM Sys_Module m
+		WHERE m.ModuleType = 1
+		ORDER BY m.ModuleParentID,m.ModuleType,m.ModuleIndex,m.CreateTime desc
+	</select>
+
+	<select id="findById" resultMap="module">
+		SELECT
+			m.ID,
+			m.ModuleIndex,
+			m.ModuleIcon,
+			m.ModuleName,
+			m.ModulePath,
+			m.ModuleParentID,
+			m.ModuleType,
+			m.CreateTime,
+			m.EndTime,
+			m.Remark
+		from Sys_Module m
+		where ID = #{id} and ModuleType = 1
+
+	</select>
+	<select id="findByIndex" resultMap="module">
+		select 
+			m.ID,
+			m.ModuleIndex,
+			m.ModuleIcon,
+			m.ModuleName,
+			m.ModulePath,
+			m.ModuleParentID,
+			m.ModuleType,
+			m.CreateTime,
+			m.EndTime,
+			m.Remark
+		 from Sys_Module m
+		where m.ModuleIndex = #{moduleIndex} and m.ModuleType = 1 
+	</select>
+	<delete id="delete" parameterType="int">
+		delete from Sys_Module where
+		ID = #{id} and ModuleType = 1
+	</delete>
+	
+	
+	<update id="update" parameterType="com.solution.entity.Module" >
+		UPDATE Sys_Module set
+			ModuleIndex = #{moduleIndex},
+			ModuleIcon = #{moduleIcon},
+			ModuleName = #{moduleName},
+			ModulePath = #{modulePath},
+			ModuleParentID = #{moduleParentID},
+			Remark = #{remark}
+		WHERE
+		ID = #{id} and ModuleType = 1
+	
+	</update>
+	
+	<insert id="insert" parameterType="com.solution.entity.Module">
+		insert into Sys_Module(
+		ModuleIndex,
+		ModuleIcon,
+		ModuleName,
+		ModulePath,
+		ModuleParentID,
+		Remark,
+		CreateTime,
+		EndTime,
+		ModuleType
+		)
+		VALUES(
+		#{moduleIndex},
+		#{moduleIcon},
+		#{moduleName},
+		#{modulePath},
+		#{moduleParentID},
+		#{remark},
+		#{createTime},
+		#{endTime},
+		1
+		)
+	</insert>
+
+</mapper>

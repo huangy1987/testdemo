@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>    
+<!DOCTYPE mapper    
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.solution.dao.DcxmlxbDao">
+
+	<resultMap id="dcxmlxb" type="com.solution.entity.Dcxmlxb">
+		<result property="id" column="ID" />
+		<result property="formNumber" column="FormNumber" />
+		<result property="loginName" column="LoginName" />
+		<result property="projectName" column="ProjectName" />
+		<result property="projectPorperty" column="ProjectPorperty" />
+		<result property="servicePrice" column="ServicePrice" />
+		<result property="staffNumber" column="StaffNumber" />
+		<result property="serviceMonths" column="ServiceMonths" />
+		<result property="singlePrice" column="SinglePrice" />
+		<result property="royaltyRate" column="RoyaltyRate" />
+		<result property="callTime" column="CallTime" />
+		<result property="intentionCustomer" column="IntentionCustomer" />
+		<result property="remarks" column="Remarks" />
+		<result property="sendEmail" column="SendEmail" />
+		<result property="contact" column="Contact" />
+		<result property="consultant" column="Consultant" />
+		<result property="createTime" column="CreateTime" />
+		<result property="endTime" column="EndTime" />
+	</resultMap>
+	
+	<select id="findAllDcxmlxb" resultType="com.solution.entity.Dcxmlxb">
+		SELECT
+			d.ID,
+			d.FormNumber,
+			d.LoginName,
+			d.ProjectName,
+			d.ProjectPorperty,
+			d.ServicePrice,
+			d.StaffNumber,
+			d.ServiceMonths,
+			d.SinglePrice,
+			d.RoyaltyRate,
+			d.CallTime,
+			d.IntentionCustomer,
+			d.Remarks,
+			d.SendEmail,
+			d.Contact,
+			d.Consultant,
+			d.CreateTime,
+			d.EndTime
+		FROM 
+			OA_Dcxmlxb d
+	</select>
+	<select id="findById" resultMap="dcxmlxb">
+		SELECT
+			d.ID,
+			d.FormNumber,
+			d.LoginName,
+			d.ProjectName,
+			d.ProjectPorperty,
+			d.ServicePrice,
+			d.StaffNumber,
+			d.ServiceMonths,
+			d.SinglePrice,
+			d.RoyaltyRate,
+			d.CallTime,
+			d.IntentionCustomer,
+			d.Remarks,
+			d.SendEmail,
+			d.Contact,
+			d.Consultant,
+			d.CreateTime,
+			d.EndTime
+		FROM 
+			OA_Dcxmlxb d
+		where d.ID = #{id} 	
+	</select>
+
+	<delete id="delete" parameterType="int">
+		delete from OA_Dcxmlxb where
+		ID = #{id} 
+	</delete>
+	
+	<update id="update" parameterType="com.solution.entity.Dcxmlxb">
+		update OA_Dcxmlxb set
+			FormNumber = #{formNumber},
+			LoginName = #{loginName},
+			ProjectName = #{projectName},
+			ProjectPorperty = #{projectPorperty},
+			ServicePrice = #{servicePrice},
+			StaffNumber = #{staffNumber},
+			ServiceMonths = #{serviceMonths},
+			SinglePrice = #{singlePrice},
+			RoyaltyRate = #{royaltyRate},
+			CallTime = #{callTime},
+			IntentionCustomer = #{intentionCustomer},
+			Remarks = #{remarks},
+			SendEmail = #{sendEmail},
+			Contact = #{contact},
+			Consultant = #{consultant}
+		where 
+		ID = #{id}
+	</update>
+	
+	<insert id="insert" parameterType="com.solution.entity.Dcxmlxb">
+		insert into OA_Dcxmlxb(
+			FormNumber,
+			LoginName,
+			ProjectName,
+			ProjectPorperty,
+			ServicePrice,
+			staffNumber,
+			ServiceMonths,
+			SinglePrice,
+			RoyaltyRate,
+			CallTime,
+			IntentionCustomer,
+			Remarks,
+			SendEmail,
+			Contact,
+			Consultant,
+			CreateTime,
+			EndTime
+		)
+		VALUES(
+			#{formNumber},
+			#{loginName},
+			#{projectName},
+			#{projectPorperty},
+			#{servicePrice},
+			#{staffNumber},
+			#{serviceMonths},
+			#{singlePrice},
+			#{royaltyRate},
+			#{callTime},
+			#{intentionCustomer},
+			#{remarks},
+			#{sendEmail},
+			#{contact},
+			#{consultant},
+			#{createTime},
+			#{endTime}
+		)
+	</insert>
+
+</mapper>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>    
+<!DOCTYPE mapper    
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.solution.dao.DepartmentDao">
+	<resultMap id="department" type="com.solution.entity.Department">
+		<result property="id" column="ID" />
+		<result property="departmentName" column="DepartmentName" />
+		<result property="departmentOwner" column="DepartmentOwner" />
+		<result property="departmentOwnerName" column="DepartmentOwnerName" />
+		<result property="createTime" column="CreateTime" />
+		<result property="endTime" column="EndTime" />
+	</resultMap>
+	<select id="findAllDepartment" resultMap="department">
+		select * from OA_Department ORDER BY CreateTime desc
+	</select>
+
+	<select id="findByDepId" resultMap="department">
+		select * from OA_Department
+		where ID = #{id} 
+	</select>
+	<delete id="delete" parameterType="int">
+		delete from OA_Department where
+		ID = #{id} 
+	</delete>
+	<select id="findAllPagination" resultMap="department" parameterType="com.solution.entity.Page">
+		select top 12 * from OA_Department 
+ 		where ID not in(
+ 			select top (
+ 			12 * (3 - 1)
+ 			)  ID from OA_Department ORDER BY CreateTime desc
+ 		)
+	</select>
+	
+	<update id="update" parameterType="com.solution.entity.Department">
+		update OA_Department set
+		DepartmentName = #{departmentName},
+		DepartmentOwner = #{departmentOwner},
+		DepartmentOwnerName = #{departmentOwnerName}
+		where 
+		ID = #{id}  
+	
+	</update>
+	
+	<insert id="insert" parameterType="com.solution.entity.Department">
+		insert into OA_Department(
+		DepartmentName,
+		DepartmentOwner,
+		DepartmentOwnerName,
+		CreateTime,
+		EndTime
+		)
+		VALUES(
+		#{departmentName},
+		#{departmentOwner},
+		#{departmentOwnerName},
+		#{createTime},
+		#{endTime}
+		)
+	</insert>
+
+</mapper>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- user类各层配置 -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+   
+    <bean id="formTypeDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.solution.dao.FormTypeDao"></property>
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+	</bean>
+	<bean id="formTypeService" class="com.solution.service.impl.FormTypeServiceImpl">
+		<property name="formTypeDao" ref="formTypeDao"></property>
+	</bean>
+	<bean id="configFromAction" class="com.solution.action.FormConfigAction">
+		<property name="formTypeService" ref="formTypeService"></property>
+		<property name="approvalProcessService" ref="approvalProcessService"></property>
+		<property name="departmentService" ref="departmentService"></property>
+		<property name="positionService" ref="positionService"></property>
+		<property name="accountService" ref="accountService"></property>
+	</bean>
+</beans>

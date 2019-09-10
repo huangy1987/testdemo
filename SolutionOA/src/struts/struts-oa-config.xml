@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+    <package name="config" namespace="/config" extends="base">
+    	<action name="findAll*" class="configFromAction" method="findAll{1}">
+			<result name="success" >/page/config/{1}.jsp </result>
+			<result name="error" type="redirect" >../login.jsp </result>
+		</action>
+		<action name="delete*" class="configFromAction" method="delete{1}">
+			<result name="success" type="redirect">../config/findAll{1}</result>
+			<result name="error" type="redirect" >../login.jsp </result>
+		</action>
+		<action name="add*" class="configFromAction" method="add{1}">
+			<result name="success" type="redirect">../config/findAll{1}</result>
+			<result name="error" type="redirect" >../login.jsp </result>
+		</action>
+		<action name="update*" class="configFromAction" method="update{1}">
+			<result name="success" type="redirect">../config/findAll{1}</result>
+			<result name="error" type="redirect" >../login.jsp </result>
+		</action>
+    </package>
+    
+</struts>

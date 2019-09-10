@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>   
+<!DOCTYPE struts PUBLIC   
+     "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"   
+     "http://struts.apache.org/dtds/struts-2.0.dtd">   
+<struts>
+
+	 <!--指定web应用的默认编码集，相当于调用HttpServletRequest的setCharacterEncoding方法-->
+     <!-- 指定由spring负责action对象的创建     -->   
+     <constant name="struts.objectFactory" value="spring" />   
+     <package name="base" namespace="/" extends="struts-default">
+		
+      </package>
+ 	<include file= "struts/struts-oa-account.xml"></include> 
+ 	<include file= "struts/struts-oa-rolemodule.xml"></include>
+ 	<include file= "struts/struts-oa-admin.xml"></include>
+ 	<include file= "struts/struts-oa-baseinfo.xml"></include>
+ 	<include file= "struts/struts-oa-config.xml"></include>
+ 	<include file= "struts/struts-oa-dcxmlxb.xml"></include>
+ 	<include file= "struts/struts-oa-form.xml"></include>
+ 	<include file= "struts/struts-oa-fdclsxmlxb.xml"></include>
+</struts>

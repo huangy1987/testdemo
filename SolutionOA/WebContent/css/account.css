@@ -1,0 +1,15 @@
+.tab-content tfoot tr td {
+	width: 100%;
+	height: 30px;
+	text-align: left;
+	vertical-align: bottom;
+	padding-left: 12px;
+}
+
+body{
+	font-size: 12px;
+}
+
+.classdisplay{
+	display: none;
+}

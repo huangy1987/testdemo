@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>    
+<!DOCTYPE mapper    
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.solution.dao.AccountRoleDao">
+	<resultMap id="role" type="com.solution.entity.AccountRole">
+		<result property="id" column="ID" />
+		<result property="roleName" column="RoleName" />
+		<result property="moduleList" column="ModuleList" />
+		<result property="remark" column="Remark" />
+		<result property="createTime" column="CreateTime" />
+		<result property="endTime" column="EndTime" />
+		<result property="departmentID" column="DepartmentID" />
+		<result property="roleType" column="RoleType" />
+	</resultMap>
+		
+	<select id="findAllRole" resultType="com.solution.entity.AccountRole">
+		SELECT
+			a.ID,
+			a.DepartmentID,
+			a.RoleName,
+			a.ModuleList,
+			a.RoleType,
+			a.CreateTime,
+			a.EndTime,
+			a.Remark,
+			d.DepartmentName
+		FROM Sys_AccountRole a
+		LEFT JOIN 
+			OA_Department d ON a.DepartmentID = d.ID
+		WHERE a.RoleType = 1
+		ORDER BY a.departmentID,a.CreateTime desc
+	</select>
+
+	<select id="findById" resultMap="role">
+		select * from Sys_AccountRole
+		where ID = #{id} and RoleType = 1
+	</select>
+
+	<delete id="delete" parameterType="int">
+		delete from Sys_AccountRole where
+		ID = #{id} and RoleType = 1
+	</delete>
+	
+	
+	<update id="update" parameterType="com.solution.entity.AccountRole">
+		update Sys_AccountRole set
+		RoleName = #{roleName},
+		ModuleList = #{moduleList},
+		Remark = #{remark},
+		DepartmentID = #{departmentID},
+		RoleType = 1
+		where 
+		ID = #{id} and RoleType = 1
+	
+	</update>
+	
+	<insert id="insert" parameterType="com.solution.entity.AccountRole">
+		insert into Sys_AccountRole(
+		RoleName,
+		ModuleList,
+		RoleType,
+		Remark,
+		CreateTime,
+		EndTime,
+		DepartmentID
+		)
+		VALUES(
+		#{roleName},
+		#{moduleList},
+		1,
+		#{remark},
+		#{createTime},
+		#{endTime},
+		#{departmentID}
+		)
+	</insert>
+	
+
+</mapper>

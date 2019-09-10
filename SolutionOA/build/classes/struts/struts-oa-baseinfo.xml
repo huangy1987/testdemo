@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+    <package name="info" namespace="/info" extends="base">
+    	<action name="findAll*" class="baseInfoAction" method="findAll{1}">
+			<result name="success" >/page/jc/{1}.jsp </result>
+			<result name="error" type="redirect" >../login.jsp </result>
+		</action>
+		<action name="delete*" class="baseInfoAction" method="delete{1}">
+			<result name="success" type="redirect">../info/findAll{1}</result>
+			<result name="error" type="redirect" >../login.jsp </result>
+		</action>
+		<action name="add*" class="baseInfoAction" method="add{1}">
+			<result name="success" type="redirect">../info/findAll{1}</result>
+			<result name="error" type="redirect" >../login.jsp </result>
+		</action>
+		<action name="update*" class="baseInfoAction" method="update{1}">
+			<result name="success" type="redirect">../info/findAll{1}</result>
+			<result name="error" type="redirect" >../login.jsp </result>
+		</action>
+    </package>
+    
+</struts>

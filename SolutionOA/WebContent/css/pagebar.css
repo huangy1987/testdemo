@@ -1,0 +1,85 @@
+@CHARSET "UTF-8";
+
+/* 分页 */
+.num{
+	width: 20px;
+	height: 14px;
+	*height: 20px;
+	font-size: 16px;
+	font-family: '宋体';
+	color: #7C7C7C;
+	background-color: transparent;
+	text-decoration: none;
+	padding-top: 2px;
+	text-align: center;
+	display: -moz-inline-box;
+	display: inline-block;
+}
+a.num:hover{
+	color: #267DFF;
+}
+.curNum{
+	width: 20px;
+	height: 14px;
+	*height: 20px;
+	font-size: 16px;
+	font-family: '宋体';
+	color: #267DFF;
+	padding-top: 2px;
+	text-align: center;
+	display: -moz-inline-box;
+	display: inline-block;
+}
+.moreNum{
+	width: 20px;
+	height: 16px;
+	*height: 20px;
+	font-size: 16px;
+	font-family: '宋体';
+	color: #7C7C7C; 
+	background: transparent;
+	padding-top: 3px;
+	text-align: center;
+	display: -moz-inline-box;
+	display: inline-block;
+}
+.pageNum{
+	width: 20px;
+	height: 14px;
+	*height: 20px;
+	font-size: 16px;
+	font-family: '宋体';
+	color: #7C7C7C;
+	background: transparent;
+	padding-top: 3px;
+	text-align: left;
+	display: -moz-inline-box;
+	display: inline-block;
+}
+.chWord{
+	width: 50px;
+	height: 14px;
+	*height: 20px;
+	font-size: 12px;
+	font-family: '宋体';
+	color: #7C7C7C;
+	text-align: center;
+	display: -moz-inline-box;
+	display: inline-block;
+}
+.chWordA{
+	width: 50px;
+	height: 14px;
+	*height: 20px;
+	color: #7C7C7C;
+	font-size: 12px;
+	font-family: '宋体';
+	background: transparent;
+	text-decoration: none;
+	text-align: center;
+	display: -moz-inline-box;
+	display: inline-block;
+}
+a.chWordA:hover{
+	color: #267DFF;
+}

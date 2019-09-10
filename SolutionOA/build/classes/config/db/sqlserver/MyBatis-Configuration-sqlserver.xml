@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <typeAliases>
+    	<typeAlias alias="account" type="com.solution.entity.Account"/>
+    	<typeAlias alias="role" type="com.solution.entity.AccountRole"/>
+    	<typeAlias alias="module" type="com.solution.entity.Module"/>
+    	<typeAlias alias="formtype" type="com.solution.entity.FormType"/>
+    	<typeAlias alias="department" type="com.solution.entity.Department"/>
+    	<typeAlias alias="position" type="com.solution.entity.Position"/>
+    	<typeAlias alias="approvalProcess" type="com.solution.entity.ApprovalProcess"/>
+    	<typeAlias alias="approvalProcessRecord" type="com.solution.entity.ApprovalProcessRecord"/>
+    	<typeAlias alias="dcxmlxb" type="com.solution.entity.Dcxmlxb"/>
+    	<typeAlias alias="fdclsxmlxb" type="com.solution.entity.Fdclsxmlxb"/>
+    </typeAliases>
+	<mappers>
+		<mapper resource="../../../com/solution/mybatis/sqlserver/account.xml" />
+		<mapper resource="../../../com/solution/mybatis/sqlserver/accountrole.xml" />
+		<mapper resource="../../../com/solution/mybatis/sqlserver/module.xml" />
+		<mapper resource="../../../com/solution/mybatis/sqlserver/formtype.xml" />
+		<mapper resource="../../../com/solution/mybatis/sqlserver/department.xml" />
+		<mapper resource="../../../com/solution/mybatis/sqlserver/position.xml" />
+		<mapper resource="../../../com/solution/mybatis/sqlserver/fdclsxmlxb.xml" />
+		<mapper resource="../../../com/solution/mybatis/sqlserver/approvalProcess.xml" />
+		<mapper resource="../../../com/solution/mybatis/sqlserver/approvalProcessRecord.xml" />
+		<mapper resource="../../../com/solution/mybatis/sqlserver/dcxmlxb.xml" />
+	</mappers>
+</configuration>
+

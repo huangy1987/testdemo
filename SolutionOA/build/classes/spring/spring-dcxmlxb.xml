@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- user类各层配置 -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+   
+    <bean id="dcxmlxbDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.solution.dao.DcxmlxbDao"></property>
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+	</bean>
+	<bean id="dcxmlxbService" class="com.solution.service.impl.DcxmlxbServiceImpl">
+		<property name="dcxmlxbDao" ref="dcxmlxbDao"></property>
+	</bean>
+	<bean id="dcxmlxbAction" class="com.solution.action.DcxmlxbAction">
+		<property name="dcxmlxbService" ref="dcxmlxbService"></property>
+		<property name="formTypeService" ref="formTypeService"></property>
+		<property name="approvalProcessService" ref="approvalProcessService"></property>
+		<property name="approvalProcessRecordService" ref="approvalProcessRecordService"></property>
+		<property name="accountService" ref="accountService"></property>
+		<property name="departmentService" ref="departmentService"></property>
+		<property name="positionService" ref="positionService"></property>
+	</bean>
+	
+</beans>

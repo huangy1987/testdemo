@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>    
+<!DOCTYPE mapper    
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.solution.dao.ApprovalProcessRecordDao">
+	<resultMap id="approvalProcessRecord" type="com.solution.entity.ApprovalProcessRecord">
+		<result property="id" column="ID" />
+		<result property="formTypeID" column="FoemTypeID" />
+		<result property="formID" column="FormID" />
+		<result property="flowNumber" column="FlowNumber" />
+		<result property="approverPosition" column="ApproverPosition" />
+		<result property="approverAccount" column="ApproverAccount" />
+		<result property="approverRealName" column="ApproverRealName" />
+		<result property="approverStatus" column="ApproverStatus" />
+		<result property="approverTime" column="ApproverTime" />
+		<result property="remark" column="Remark" />
+	</resultMap>
+	<select id="findAllApprovalProcessRecord" resultMap="approvalProcessRecord">
+		SELECT
+			a.ID,
+			a.FoemTypeID,
+			a.FormID,
+			a.FlowNumber,
+			a.ApproverPosition,
+			a.ApproverAccount,
+			a.ApproverRealName,
+			a.ApproverStatus,
+			a.ApproverTime,
+			a.Remark,
+			f.FormName
+		from OA_ApprovalProcessRecord a 
+		LEFT JOIN 
+			OA_FormType f ON a.FoemTypeID = f.ID
+		ORDER BY a.FoemTypeID,a.FormID,a.FlowNumber,a.ApproverTime DESC
+	</select>
+
+	<select id="findById" resultMap="approvalProcessRecord">
+		select * from OA_ApprovalProcessRecord
+		where ID = #{id}
+	</select>
+
+	<delete id="delete" parameterType="int">
+		delete from OA_ApprovalProcessRecord where
+		ID = #{id}
+	</delete>
+	
+	
+	<update id="update" parameterType="com.solution.entity.ApprovalProcessRecord">
+		update OA_ApprovalProcessRecord set
+		FoemTypeID = #{formTypeID},
+		Remark = #{remark},
+		FormID = #{formID},
+		FlowNumber = #{flowNumber},
+		ApproverPosition = #{approverPosition},
+		ApproverAccount = #{approverAccount},
+		ApproverRealName = #{approverRealName},
+		ApproverStatus = #{approverStatus},
+		ApproverTime = #{approverTime}
+		where 
+		ID = #{id}
+	
+	</update>
+	
+	<insert id="insert" parameterType="com.solution.entity.ApprovalProcessRecord">
+		insert into OA_ApprovalProcessRecord(
+		FoemTypeID,
+		Remark,
+		FormID,
+		FlowNumber,
+		ApproverPosition,
+		ApproverAccount,
+		ApproverRealName,
+		ApproverStatus,
+		ApproverTime
+		)
+		VALUES(
+		#{formTypeID},
+		#{remark},
+		#{formID},
+		#{flowNumber},
+		#{approverPosition},
+		#{approverAccount},
+		#{approverRealName},
+		#{approverStatus},
+		#{approverTime}
+		)
+	</insert>
+
+</mapper>

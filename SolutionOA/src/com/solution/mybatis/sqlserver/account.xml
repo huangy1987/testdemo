@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>    
+<!DOCTYPE mapper    
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.solution.dao.AccountDao">
+
+	<resultMap id="account" type="com.solution.entity.Account">
+		<result property="id" column="ID" />
+		<result property="loginName" column="LoginName" />
+		<result property="realName" column="RealName" />
+		<result property="passWord" column="PassWord" />
+		<result property="accountRoleID" column="AccountRoleID" />
+		<result property="accountGroupID" column="AccountGroupID" />
+		<result property="remark" column="Remark" />
+		<result property="createTime" column="CreateTime" />
+		<result property="endTime" column="EndTime" />
+		<result property="departmentID" column="DepartmentID" />
+		<result property="positionID" column="PositionID" />
+		<result property="personalInfoID" column="PersonalInfoID" />
+		<result property="accountType" column="AccountType" />
+	</resultMap>
+	
+	<select id="findAllAccount" resultType="com.solution.entity.Account">
+		SELECT
+			s.ID,
+			s.DepartmentID,
+			s.PositionID,
+			s.AccountRoleID,
+			s.AccountGroupID,
+			s.PersonalInfoID,
+			s.LoginName,
+			s.PassWord,
+			s.RealName,
+			s.CreateTime,
+			s.EndTime,
+			s.Remark,
+			d.DepartmentName,
+			p.PositionName,
+			r.RoleName,
+			(case when s.EndTime > GETDATE() then 1 else 0 end)  as UsedState
+		FROM 
+			Sys_Account s
+		LEFT JOIN 
+			OA_Department d ON s.DepartmentID = d.ID
+		LEFT JOIN 
+			OA_Position p ON p.ID = s.PositionID 
+		LEFT JOIN 
+			Sys_AccountRole r ON r.ID = s.AccountRoleID
+		WHERE	s.AccountType = 1	
+		ORDER BY s.DepartmentID,s.PositionID,s.CreateTime desc
+	</select>
+	<select id="findById" resultType="com.solution.entity.Account">
+	SELECT
+			s.ID,
+			s.DepartmentID,
+			s.PositionID,
+			s.AccountRoleID,
+			s.AccountGroupID,
+			s.PersonalInfoID,
+			s.LoginName,
+			s.PassWord,
+			s.RealName,
+			s.CreateTime,
+			s.EndTime,
+			s.Remark,
+			d.DepartmentName,
+			p.PositionName,
+			r.RoleName,
+			(case when s.EndTime > GETDATE() then 1 else 0 end)  as UsedState
+		FROM 
+			Sys_Account s
+		LEFT JOIN 
+			OA_Department d ON s.DepartmentID = d.ID
+		LEFT JOIN 
+			OA_Position p ON p.ID = s.PositionID 
+		LEFT JOIN 
+			Sys_AccountRole r ON r.ID = s.AccountRoleID
+		WHERE	s.AccountType = 1 and s.ID = #{id}
+		ORDER BY s.DepartmentID,s.PositionID,s.CreateTime desc
+	</select>
+
+	<delete id="delete" parameterType="int">
+		delete from Sys_Account where
+		ID = #{id} and AccountType = 1	
+	</delete>
+	
+	
+	<update id="update" parameterType="com.solution.entity.Account">
+		update Sys_Account set
+		LoginName = #{loginName},
+		RealName = #{realName},
+		PassWord = #{passWord},
+		AccountRoleID = #{accountRoleID},
+		AccountGroupID = #{accountGroupID},
+		Remark = #{remark},
+		CreateTime = #{createTime},
+		EndTime = #{endTime},
+		DepartmentID = #{departmentID},
+		PositionID = #{positionID},
+		PersonalInfoID = #{personalInfoID},
+		AccountType = 1
+		where 
+		ID = #{id} and AccountType = 1	
+	
+	</update>
+	
+	<insert id="insert" parameterType="com.solution.entity.Account">
+		insert into Sys_Account(
+			LoginName,
+			RealName,
+			PassWord,
+			AccountRoleID,
+			AccountGroupID,
+			Remark,
+			CreateTime,
+			EndTime,
+			DepartmentID,
+			PositionID,
+			PersonalInfoID,
+			AccountType
+		)
+		VALUES(
+		#{loginName},
+		#{realName},
+		#{passWord},
+		#{accountRoleID},
+		#{accountGroupID},
+		#{remark},
+		#{createTime},
+		#{endTime},
+		#{departmentID},
+		#{positionID},
+		#{personalInfoID},
+		1
+		)
+	</insert>
+
+</mapper>

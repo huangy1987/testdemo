@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- user类各层配置 -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+   
+    <bean id="moduleDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.solution.dao.ModuleDao"></property>
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+	</bean>
+	<bean id="moduleService" class="com.solution.service.impl.ModuleServiceImpl">
+		<property name="moduleDao" ref="moduleDao"></property>
+	</bean>
+	<bean id="findModuleByRoleAction" class="com.solution.action.FindModuleByRoleAction">
+		<property name="moduleService" ref="moduleService"></property>
+	</bean>
+</beans>
